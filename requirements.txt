@@ -1,0 +1,6 @@
+psycopg2-binary
+fastapi
+"uvicorn[standard]"
+PyGithub
+openai
+langchain
