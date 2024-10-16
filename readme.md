@@ -8,3 +8,36 @@ To get started running the project just run
 ```./init.sh```
 
 And the database will run alongside with the API offering the endpoints for document insertion and information retrieval.
+All the testing here was done using postman to create and validate the solution. Ideally it should have testing files but I was unable to do it do limited time.
+
+For the insert_content route use:
+```
+{
+    "name":"ruandocini/rag",
+    "documentation_path":"documentation"
+}
+```
+As the body for the request to populate the DB
+
+For the search_content route utilize:
+```
+{
+    "query":"What are SageMaker Geospatial capabilities?"
+}
+
+{
+    "query":"What is SageMaker?"
+}
+
+{
+    "query":"What are all AWS regions where SageMaker is available?"
+}
+
+{
+    "query":"How to check if an endpoint is KMS encrypted?"
+}
+
+{
+    "query":"What are SageMaker Geospatial capabilities?"
+}
+```
