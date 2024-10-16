@@ -6,8 +6,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pydantic import BaseModel
 from typing import List
 from llm.llm import LLM
-from llm.prompts import simple, refine_context
-import hashlib
+from llm.strategies import simple, swarm
 import uuid
 
 
@@ -68,19 +67,16 @@ async def insert_content(repository: Repository):
 
 @app.get("/search_content/")
 async def search_content(query: Query):
+
     query_embedding = generate_embeddings(query.query)
     context = connection.similarity_search(query_embedding)
     context_content = [
         row[2]
         for row in context
     ]
-    unified_ctx = "\n".join(context_content)
+    unified_ctxs = "\n".join(context_content)
 
-    # raise Exception(unified_ctx)
-
-    # refined_ctx = llm.generate_text(refine_context(context=unified_ctx,query=query.query))
-
-    return llm.generate_text(simple(context=unified_ctx,query=query.query))
+    return simple(context=unified_ctxs, query=query.query, llm=llm)
 
 @app.get("/simple_search/")
 async def simple_search(query: Query):
