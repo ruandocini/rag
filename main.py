@@ -6,8 +6,9 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pydantic import BaseModel
 from typing import List
 from llm.llm import LLM
-from llm.prompts import simple
+from llm.prompts import simple, refine_context
 import hashlib
+import uuid
 
 
 class Query(BaseModel):
@@ -53,7 +54,7 @@ async def insert_content(repository: Repository):
 
     [
         connection.insert_contents(
-            content_id=hashlib.sha256(chunk.encode()).hexdigest(),
+            content_id=str(uuid.uuid4()),
             item_id=item["base_64"],
             content=chunk,
             embedding=generate_embeddings(chunk)
@@ -75,10 +76,15 @@ async def search_content(query: Query):
     ]
     unified_ctx = "\n".join(context_content)
 
+    # raise Exception(unified_ctx)
+
+    # refined_ctx = llm.generate_text(refine_context(context=unified_ctx,query=query.query))
+
     return llm.generate_text(simple(context=unified_ctx,query=query.query))
 
 @app.get("/simple_search/")
 async def simple_search(query: Query):
     query_embedding = generate_embeddings(query.query)
     context = connection.similarity_search(query_embedding)
+    # keyword_search = connection.keyword_search(query.query)
     return context

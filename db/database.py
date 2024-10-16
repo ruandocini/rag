@@ -93,11 +93,17 @@ class Database():
             FROM contents
             JOIN items ON items.id = contents.item_id
             ORDER BY cosine_similarity 
-            DESC LIMIT 30
+            DESC LIMIT 35
             """,
             (query_embedding,)
         )
         return self.cursor.fetchall()
+    
+    # TODO implement hybrid search in the future verion
+    # to combine the search results from the similarity search and keyword search
+    # to get better results at the retrieval stage
+    def hybrid_search(self, query):
+        pass
     
     def decode_content(self, content):
         return {
@@ -107,6 +113,10 @@ class Database():
         } 
     
     def extract_github_documents(self, repository: Repository):
+        """"
+        Extracts the documentation from the repository to simplify the process of inserting the documentation into the database.
+        Assuming that the documentation is in markdown format in this first version.
+        """
 
         auth = Auth.Token(os.environ.get("GITHUB_TOKEN"))
         g = Github(auth=auth)

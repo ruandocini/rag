@@ -15,3 +15,18 @@ def simple(context: str, query: str):
     Only use the information in the context to answer the query.
     Use the context to give the most specific information possible.
     """.format(context, query)
+
+def refine_context(context:str, query:str):
+    return """
+    You are supplied with the following context:
+    {}
+
+    The user has asked the following query:
+    {}
+
+    Based on that select from above only the information that is relevant to the query.
+    And return it exactly as it is. 
+    Without any additional information. 
+    Without any additional context. 
+    Without any additional explanation.
+    """.format(context, query)

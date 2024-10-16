@@ -1,6 +1,11 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from openai import OpenAI
 
+# The ideal solution would use a self-hosted LLM due to security and sensitive data concerns.
+# The OpenAI API is used as a temporary solution just to demonstrate the concept.
+# For production, a self-hosted solution is recommended, such as Hugging Face's transformers library.
+# Ideally this model would be hosted in another API acessible only by the main API.
+# This would allow for better security and control over the model.
 
 class OpenAILLM:
     def __init__(self, model: str = "gpt-3.5-turbo"):
