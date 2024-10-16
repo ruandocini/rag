@@ -3,6 +3,7 @@ from openai import OpenAI
 
 # The ideal solution would use a self-hosted LLM due to security and sensitive data concerns.
 # The OpenAI API is used as a temporary solution just to demonstrate the concept.
+# For this case, due to time, I decided not to use the Hugging Face's transformers library for that purpose.
 # For production, a self-hosted solution is recommended, such as Hugging Face's transformers library.
 # Ideally this model would be hosted in another API acessible only by the main API.
 # This would allow for better security and control over the model.
