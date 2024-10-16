@@ -1,6 +1,9 @@
-psycopg2-binary
-fastapi
-"uvicorn[standard]"
-PyGithub
-openai
-langchain
+psycopg2-binary==2.9.9
+fastapi==0.115.1
+uvicorn==0.31.1
+PyGithub==2.4.0
+openai==1.40.3
+langchain==0.2.11
+markdown==3.6
+transformers==4.43.1
+torch==2.3.1
