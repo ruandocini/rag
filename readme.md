@@ -21,22 +21,19 @@ As the body for the request to populate the DB
 
 For the search_content route utilize:
 ```
-{
-    "query":"What are SageMaker Geospatial capabilities?"
-}
-
+##1
 {
     "query":"What is SageMaker?"
 }
-
+##2
 {
     "query":"What are all AWS regions where SageMaker is available?"
 }
-
+##3
 {
     "query":"How to check if an endpoint is KMS encrypted?"
 }
-
+##4
 {
     "query":"What are SageMaker Geospatial capabilities?"
 }
